@@ -62,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: AppTheme.dark, //can use theme
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
         child: Column(
           children: [
             Row(
@@ -73,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     _actionButton(
                         () => fileService.loadFile(context), Icons.file_upload),
-                    SizedBox(width: 8),
+                    const SizedBox(width: 8),
                     _actionButton(
                         () => fileService.newDirectory(context), Icons.folder),
                   ],
@@ -86,7 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 maxLines: 3,
                 hintText: 'Enter Video Title',
                 controller: fileService.titleController),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             CustomTextField(
                 maxLength: 50000,
                 maxLines: 6,
@@ -102,7 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             Row(
               children: [
-                _mainButton(() => null, "Save"),
+                _mainButton(() => fileService.saveContent(context), "Save"),
               ],
             )
           ],
