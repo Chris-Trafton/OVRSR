@@ -1,9 +1,5 @@
-//https://www.youtube.com/watch?v=SmmHdxAw8wA
-//1:26
-//google auth
-//https://www.youtube.com/watch?v=PkvW5WoUonQ
 import 'package:flutter/material.dart';
-import 'package:ovrsr/screens/home_screen.dart';
+import 'package:ovrsr/pages/home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,12 +8,13 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'MetaTube',
-      home: HomeScreen(),
+      title: 'OVSRS',
+      home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
