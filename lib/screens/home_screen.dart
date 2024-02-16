@@ -95,7 +95,7 @@ class _HomeScreenState extends State<HomeScreen> {
             CustomTextField(
                 maxLength: 500,
                 maxLines: 4,
-                hintText: 'Enter Video Title',
+                hintText: 'Enter Tags',
                 controller: fileService.tagsController),
             const SizedBox(
               height: 20,
