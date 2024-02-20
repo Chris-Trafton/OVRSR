@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ovrsr/pages/home.dart';
+import 'package:ovrsr/pages/login.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'OVSRS',
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: LoginPage(),
     );
   }
 }
