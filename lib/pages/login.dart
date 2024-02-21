@@ -31,6 +31,12 @@ class _LoginPage extends State<LoginPage> {
       appBar: AppBar(
         title: _isLogin ? const Text('Login') : const Text('Sign Up'),
         automaticallyImplyLeading: false,
+        titleTextStyle: GoogleFonts.montserrat(
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+          fontSize: 24,
+        ),
+        backgroundColor: AppTheme.backgroundColor,
       ),
       body: Padding(
         padding:
