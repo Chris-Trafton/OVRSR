@@ -1,10 +1,13 @@
 //import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-//import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:ovrsr/provider/userProfileProvider.dart';
 import 'package:ovrsr/utils/apptheme.dart';
 import 'package:ovrsr/utils/apptheme.dart';
+import 'package:ovrsr/widgets/easySnackBar.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -14,9 +17,7 @@ class LoginPage extends StatefulWidget {
   State<LoginPage> createState() => _LoginPage();
 }
 
-final _formKey = GlobalKey<FormState>();
-
-class _LoginPage extends State<LoginPage> {
+class _LoginPage extends StatefulWidget<LoginPage> {
   var _isLoading = false;
   var _isObscure = true;
   var _isInit = true;
@@ -24,6 +25,108 @@ class _LoginPage extends State<LoginPage> {
   var _enteredEmail = '';
   var _enteredPassword = '';
   var _enteredUserName = '';
+
+  late UserProfileProvider _userProfileProvider;
+  final _auth = FirebaseAuth.instance;
+  final _formKey = GlobalKey<FormState>();
+
+  _getProviderSettings() async {
+    _userProfileProvider = ref.read(userProfileProvider.notifier);
+  }
+
+  @override
+  void didChangeDependencies() {
+    if (_isInit) {
+      _getProviderSettings();
+    }
+    _isInit = false;
+    super.didChangeDependencies();
+  }
+
+  bool _saveForm() {
+    final isValid = _formKey.currentState!.validate();
+    if (isValid && context.mounted) {
+      _formKey.currentState!.save();
+    }
+    return isValid;
+  }
+
+  void _submitAuthForm(
+    String email,
+    String password,
+    String userName,
+    bool isLogin,
+    BuildContext ctx,
+  ) async {
+    try {
+      setState(() {
+        _isLoading = true;
+      });
+
+      UserCredential authResult;
+      if (isLogin) {
+        authResult = await _auth.signInWithEmailAndPassword(
+          email: email,
+          password: password,
+        );
+
+        await _userProfileProvider.fetchUserProfileIfNeeded();
+        setState(() {
+          _isLoading = false;
+        });
+        //Send to home page
+      } else {
+        authResult = await _auth.createUserWithEmailAndPassword(
+          email: email,
+          password: password,
+        );
+
+        User? user = _auth.currentUser;
+        if (user != null) {
+          _userProfileProvider.email = user.email ?? "";
+          _userProfileProvider.userName = userName;
+          _userProfileProvider.password = password;
+          await _userProfileProvider.writeUserProfileToDb();
+
+          if (!user.emailVerified) {
+            await user.sendEmailVerification();
+            // ignore: use_build_context_synchronously
+            EasySnackbar.show(SnackbarType.info,
+                'Check your email for confirmation', context);
+          }
+        }
+        setState(() {
+          _isLoading = false;
+        });
+        //Send to home page
+      }
+      // ignore: unused_catch_clause
+    } on PlatformException catch (e) {
+      setState(() {
+        _isLoading = false;
+      });
+    } catch (err) {
+      if (err is FirebaseAuthException) {
+        if (err.code == 'email-already-in-use') {
+          // ignore: use_build_context_synchronously
+          EasySnackbar.show(SnackbarType.error,
+              'Email already in use. Try logging in', context);
+        } else if (err.code == 'INVALID_LOGIN_CREDENTIALS') {
+          // ignore: use_build_context_synchronously
+          EasySnackbar.show(
+              SnackbarType.error, 'Username or password is incorrect', context);
+          setState(() {
+            _isLoading = false;
+          });
+        }
+        if (!mounted) {
+          setState(() {
+            _isLoading = false;
+          });
+        }
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,33 +162,10 @@ class _LoginPage extends State<LoginPage> {
                         color: AppTheme.light,
                         style: BorderStyle.solid,
                       ),
-                    )
-                    // decoration: BoxDecoration(
-                    //   image: const DecorationImage(
-                    //     // image: AssetImage('assets/images/OVRSR_DARK')),
-                    //     image: AssetImage('assets/images/OVRSR_DARK.png'),
-                    //   ),
-                    //   // borderRadius: const BorderRadius.only(
-                    //   //   topRight: Radius.circular(40),
-                    //   // ),
-                    //   // border: Border.all(
-                    //   //   width: 3,
-                    //   //   color: const Color.fromARGB(255, 6, 53, 60),
-                    //   //   style: BorderStyle.solid,
-                    //   // ),
-                    // ),
-                    ),
+                    )),
                 const SizedBox(
                   height: 5,
                 ),
-                //Text(
-                //'OVRSR',
-                // style: GoogleFonts.montserrat(
-                //   fontWeight: FontWeight.bold,
-                //   color: Colors.black,
-                //   fontSize: 24,
-                // ),
-                //),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: SizedBox(
