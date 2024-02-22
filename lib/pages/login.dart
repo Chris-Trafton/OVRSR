@@ -33,10 +33,10 @@ class _LoginPage extends State<LoginPage> {
         automaticallyImplyLeading: false,
         titleTextStyle: GoogleFonts.montserrat(
           fontWeight: FontWeight.bold,
-          color: Colors.white,
+          color: Colors.black,
           fontSize: 24,
         ),
-        backgroundColor: AppTheme.backgroundColor,
+        backgroundColor: AppTheme.light,
       ),
       body: Padding(
         padding:
@@ -52,11 +52,11 @@ class _LoginPage extends State<LoginPage> {
                     width: 300,
                     decoration: BoxDecoration(
                       image: const DecorationImage(
-                        image: AssetImage('assets/images/Logo_Dark.png'),
+                        image: AssetImage('assets/images/Logo_Light.png'),
                       ),
                       border: Border.all(
                         width: 3,
-                        color: AppTheme.darkAccent,
+                        color: AppTheme.light,
                         style: BorderStyle.solid,
                       ),
                     )
@@ -78,14 +78,14 @@ class _LoginPage extends State<LoginPage> {
                 const SizedBox(
                   height: 5,
                 ),
-                Text(
-                  'OVRSR',
-                  style: GoogleFonts.montserrat(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                    fontSize: 24,
-                  ),
-                ),
+                //Text(
+                //'OVRSR',
+                // style: GoogleFonts.montserrat(
+                //   fontWeight: FontWeight.bold,
+                //   color: Colors.black,
+                //   fontSize: 24,
+                // ),
+                //),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: SizedBox(

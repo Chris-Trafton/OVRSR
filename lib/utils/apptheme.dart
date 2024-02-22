@@ -6,6 +6,7 @@ class AppTheme {
   static const Color meduim = Color(0x50FFFFFF);
   static const Color accent = Color.fromARGB(255, 106, 166, 241);
   static const Color darkAccent = Color.fromARGB(255, 16, 53, 102);
+  static const Color lightAccent = Color.fromARGB(255, 106, 166, 241);
 
   static const Color backgroundColor = Color.fromARGB(255, 60, 60, 60);
 
