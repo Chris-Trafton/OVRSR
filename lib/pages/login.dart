@@ -2,11 +2,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+//import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ovrsr/provider/userProfileProvider.dart';
 import 'package:ovrsr/utils/apptheme.dart';
-import 'package:ovrsr/utils/apptheme.dart';
+//import 'package:ovrsr/utils/apptheme.dart';
 import 'package:ovrsr/widgets/easySnackBar.dart';
 
 class LoginPage extends StatefulWidget {
@@ -17,7 +17,7 @@ class LoginPage extends StatefulWidget {
   State<LoginPage> createState() => _LoginPage();
 }
 
-class _LoginPage extends StatefulWidget<LoginPage> {
+class _LoginPage extends State<LoginPage> {
   var _isLoading = false;
   var _isObscure = true;
   var _isInit = true;
