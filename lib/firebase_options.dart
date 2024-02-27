@@ -75,6 +75,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '435427114035',
     projectId: 'ovrsr-6bcbe',
     storageBucket: 'ovrsr-6bcbe.appspot.com',
-    iosBundleId: 'com.example.ovrsr.RunnerTests',
+    //iosBundleId: 'com.example.ovrsr.RunnerTests',
+    iosBundleId: 'com.example.ovrsr',
   );
 }

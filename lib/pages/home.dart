@@ -1,27 +1,51 @@
 import 'package:flutter/material.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+import 'package:google_fonts/google_fonts.dart';
+import 'package:ovrsr/utils/apptheme.dart';
+import 'package:ovrsr/widgets/easySnackBar.dart';
+import 'package:youtube_video_player/potrait_player.dart';
+import 'package:youtube_video_player/youtube_video_player.dart';
+
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
   // ignore: no_logic_in_create_state
-  State<MyHomePage> createState() => _HomePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<MyHomePage> {
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('OVRSR'),
-      ),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Image.asset(
+                'assets/images/Logo_Light.png',
+                height: 40,
+              ),
+            ],
+          ),
+          leading: IconButton(
+            icon: const Icon(Icons.menu),
+            onPressed: () {
+              // ignore: avoid_print
+              print('Drawer button pressed');
+              EasySnackbar.show(
+                  SnackbarType.error, 'Drawer button pressed', context);
+            },
+          )),
       body: const Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'Welcome to OVRSR',
-            ),
+            Expanded(
+              child: PotraitPlayer(
+                  link: 'https://youtube.com/live/_TAcY9b1d10?feature=share',
+                  aspectRatio: 16 / 9),
+            )
           ],
         ),
       ),
