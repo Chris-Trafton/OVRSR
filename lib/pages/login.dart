@@ -1,23 +1,23 @@
-//import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-//import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:ovrsr/pages/home.dart';
 import 'package:ovrsr/provider/userProfileProvider.dart';
 import 'package:ovrsr/utils/apptheme.dart';
-//import 'package:ovrsr/utils/apptheme.dart';
 import 'package:ovrsr/widgets/easySnackBar.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class LoginPage extends StatefulWidget {
+class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});
 
   @override
-  // ignore: no_logic_in_create_state
-  State<LoginPage> createState() => _LoginPage();
+  ConsumerState<LoginPage> createState() {
+    return _LoginPage();
+  }
 }
 
-class _LoginPage extends State<LoginPage> {
+class _LoginPage extends ConsumerState<LoginPage> {
   var _isLoading = false;
   var _isObscure = true;
   var _isInit = true;
@@ -74,7 +74,11 @@ class _LoginPage extends State<LoginPage> {
         setState(() {
           _isLoading = false;
         });
-        //Send to home page
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => const MyHomePage(),
+          ),
+        );
       } else {
         authResult = await _auth.createUserWithEmailAndPassword(
           email: email,
@@ -98,7 +102,11 @@ class _LoginPage extends State<LoginPage> {
         setState(() {
           _isLoading = false;
         });
-        //Send to home page
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => const MyHomePage(),
+          ),
+        );
       }
       // ignore: unused_catch_clause
     } on PlatformException catch (e) {
@@ -268,7 +276,12 @@ class _LoginPage extends State<LoginPage> {
                   ),
                 ),
                 ElevatedButton(
-                  onPressed: () => {},
+                  onPressed: () {
+                    if (_saveForm()) {
+                      _submitAuthForm(_enteredEmail, _enteredPassword,
+                          _enteredUserName, _isLogin, context);
+                    }
+                  },
                   child: _isLoading
                       ? const CircularProgressIndicator()
                       : _isLogin
