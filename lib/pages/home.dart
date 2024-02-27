@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:ovrsr/utils/apptheme.dart';
 import 'package:ovrsr/widgets/easySnackBar.dart';
 import 'package:youtube_video_player/potrait_player.dart';
-import 'package:youtube_video_player/youtube_video_player.dart';
+//import 'package:youtube_video_player/youtube_video_player.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -34,7 +34,7 @@ class _HomePageState extends State<HomePage> {
               // ignore: avoid_print
               print('Drawer button pressed');
               EasySnackbar.show(
-                  SnackbarType.error, 'Drawer button pressed', context);
+                  SnackbarType.info, 'Drawer button pressed', context);
             },
           )),
       body: const Center(
@@ -43,7 +43,8 @@ class _HomePageState extends State<HomePage> {
           children: <Widget>[
             Expanded(
               child: PotraitPlayer(
-                  link: 'https://youtube.com/live/_TAcY9b1d10?feature=share',
+                  //link: 'https://youtube.com/live/_TAcY9b1d10?feature=share',
+                  link: 'https://www.youtube.com/watch?v=B4-L2nfGcuE',
                   aspectRatio: 16 / 9),
             )
           ],
