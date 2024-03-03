@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
       ),
       //color: Colors.purple,
       // scaffoldBackgroundColor: const Colors.white,
-      home: LoginPage(),
+      home: const LoginPage(),
     );
   }
 }
