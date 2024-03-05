@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
             Expanded(
               child: PotraitPlayer(
                   //link: 'https://youtube.com/live/_TAcY9b1d10?feature=share',
-                  link: 'https://www.youtube.com/watch?v=B4-L2nfGcuE',
+                  link: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
                   aspectRatio: 16 / 9),
             )
           ],

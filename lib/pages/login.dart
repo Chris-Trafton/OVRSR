@@ -191,10 +191,22 @@ class _LoginPage extends ConsumerState<LoginPage> {
                             TextFormField(
                               autocorrect: true,
                               textCapitalization: TextCapitalization.words,
+                              cursorColor: AppTheme.light,
                               decoration: InputDecoration(
                                 labelStyle: GoogleFonts.jacquesFrancois(),
-                                label: const Text('Username'),
+                                label: const Text(
+                                  'Username',
+                                  style: TextStyle(color: AppTheme.light),
+                                ),
                                 filled: true,
+                                fillColor: AppTheme.meduim,
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(5.0),
+                                  borderSide: const BorderSide(
+                                    color: AppTheme.accent,
+                                    width: 2,
+                                  ),
+                                ),
                               ),
                               validator: (value) {
                                 if (value == null || value.trim().isEmpty) {
@@ -213,10 +225,22 @@ class _LoginPage extends ConsumerState<LoginPage> {
                             maxLength: 320,
                             autocorrect: true,
                             textCapitalization: TextCapitalization.words,
+                            cursorColor: AppTheme.light,
                             decoration: InputDecoration(
                               labelStyle: GoogleFonts.jacquesFrancois(),
-                              label: const Text('Email'),
+                              label: const Text(
+                                'Email',
+                                style: TextStyle(color: AppTheme.light),
+                              ),
                               filled: true,
+                              fillColor: AppTheme.meduim,
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5.0),
+                                borderSide: const BorderSide(
+                                  color: AppTheme.accent,
+                                  width: 2,
+                                ),
+                              ),
                             ),
                             validator: (value) {
                               if (value == null || value.trim().isEmpty) {
@@ -238,10 +262,15 @@ class _LoginPage extends ConsumerState<LoginPage> {
                             height: 30,
                           ),
                           TextFormField(
+                            cursorColor: AppTheme.light,
                             decoration: InputDecoration(
                               labelStyle: GoogleFonts.jacquesFrancois(),
-                              label: const Text('Password'),
+                              label: const Text(
+                                'Password',
+                                style: TextStyle(color: AppTheme.light),
+                              ),
                               filled: true,
+                              fillColor: AppTheme.meduim,
                               suffixIcon: IconButton(
                                 icon: _isObscure
                                     ? const Icon(Icons.visibility)
@@ -251,6 +280,13 @@ class _LoginPage extends ConsumerState<LoginPage> {
                                     _isObscure = !_isObscure;
                                   });
                                 },
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5.0),
+                                borderSide: const BorderSide(
+                                  color: AppTheme.accent,
+                                  width: 2,
+                                ),
                               ),
                             ),
                             obscureText: _isObscure,
@@ -276,6 +312,10 @@ class _LoginPage extends ConsumerState<LoginPage> {
                   ),
                 ),
                 ElevatedButton(
+                  style: TextButton.styleFrom(
+                    backgroundColor: const Color.fromARGB(0, 128, 109, 0),
+                    foregroundColor: AppTheme.light,
+                  ),
                   onPressed: () {
                     if (_saveForm()) {
                       _submitAuthForm(_enteredEmail, _enteredPassword,
@@ -283,7 +323,9 @@ class _LoginPage extends ConsumerState<LoginPage> {
                     }
                   },
                   child: _isLoading
-                      ? const CircularProgressIndicator()
+                      ? const CircularProgressIndicator(
+                          color: AppTheme.accent,
+                        )
                       : _isLogin
                           ? const Text('Log In')
                           : const Text('Sign Up'),
@@ -301,6 +343,11 @@ class _LoginPage extends ConsumerState<LoginPage> {
                               ? const Text('Don\'t have an account?')
                               : const Text('Have an account?'),
                           TextButton(
+                            style: TextButton.styleFrom(
+                              backgroundColor:
+                                  const Color.fromARGB(0, 128, 109, 0),
+                              foregroundColor: AppTheme.light,
+                            ),
                             onPressed: () {
                               setState(() {
                                 _isLogin = !_isLogin;
