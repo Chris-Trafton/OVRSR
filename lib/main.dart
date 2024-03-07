@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/find_locale.dart';
 import 'package:ovrsr/firebase_options.dart';
+import 'package:ovrsr/pages/account.dart';
 //import 'package:ovrsr/pages/home.dart';
 import 'package:ovrsr/pages/login.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -36,7 +37,8 @@ class MyApp extends StatelessWidget {
       ),
       //color: Colors.purple,
       // scaffoldBackgroundColor: const Colors.white,
-      home: const LoginPage(),
+      home: const AccountPage(),
+      //change to LoginPage()
     );
   }
 }

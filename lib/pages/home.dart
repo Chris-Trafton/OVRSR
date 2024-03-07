@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
             Expanded(
               child: Column(
                 children: [
-                  Text("Welcome to OVSRS"),
+                  Text("Welcome to OVRSR"),
                   Expanded(
                     child: PotraitPlayer(
                         //link: 'https://youtube.com/live/_TAcY9b1d10?feature=share',
