@@ -136,9 +136,21 @@ class _LoginPage extends ConsumerState<LoginPage> {
     }
   }
 
+  //_isLogin ? const Text('Login') : const Text('Sign Up'),
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // appBar: AppBar(
+      //   title: _isLogin ? const Text('Login') : const Text('Sign Up'),
+      //   automaticallyImplyLeading: false,
+      //   titleTextStyle: GoogleFonts.montserrat(
+      //     fontWeight: FontWeight.bold,
+      //     color: Colors.black,
+      //     fontSize: 24,
+      //   ),
+      //   backgroundColor: AppTheme.light,
+      // ),
       appBar: AppBar(
         title: _isLogin ? const Text('Login') : const Text('Sign Up'),
         automaticallyImplyLeading: false,
@@ -148,7 +160,17 @@ class _LoginPage extends ConsumerState<LoginPage> {
           fontSize: 24,
         ),
         backgroundColor: AppTheme.light,
+        actions: [
+          Image.asset(
+            'assets/images/Logo_Dark.png',
+            height: 40,
+          ),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10),
+          )
+        ],
       ),
+
       body: Padding(
         padding:
             EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.05),

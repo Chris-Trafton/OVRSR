@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ovrsr/utils/apptheme.dart';
 import 'package:ovrsr/widgets/easySnackBar.dart';
@@ -19,15 +18,21 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
+        title: const Row(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Image.asset(
-              'assets/images/Logo_Light.png',
-              height: 40,
-            ),
+            Text('Home'),
           ],
         ),
+        actions: [
+          Image.asset(
+            'assets/images/Logo_Light.png',
+            height: 40,
+          ),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10),
+          )
+        ],
       ),
       drawer: MainDrawer(),
       body: const Center(
@@ -35,11 +40,19 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Expanded(
-              child: PotraitPlayer(
-                  //link: 'https://youtube.com/live/_TAcY9b1d10?feature=share',
-                  link: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-                  aspectRatio: 16 / 9),
-            )
+              child: Column(
+                children: [
+                  Text("Welcome to OVSRS"),
+                  Expanded(
+                    child: PotraitPlayer(
+                        //link: 'https://youtube.com/live/_TAcY9b1d10?feature=share',
+                        link: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+                        aspectRatio: 16 / 9),
+                  ),
+                  Text("This is the bottom")
+                ],
+              ),
+            ),
           ],
         ),
       ),
