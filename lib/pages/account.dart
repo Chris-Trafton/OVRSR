@@ -1,6 +1,6 @@
-import 'dart:ffi';
-
+//https://medium.flutterdevs.com/verify-email-and-reset-password-in-flutter-31d07db1db76
 import 'package:flutter/material.dart';
+import 'package:ovrsr/utils/apptheme.dart';
 import 'package:ovrsr/widgets/main_drawer.dart';
 
 class AccountPage extends StatelessWidget {
@@ -28,42 +28,97 @@ class AccountPage extends StatelessWidget {
       ),
       drawer: const MainDrawer(),
       body: Padding(
-          padding:
-              EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.25),
-          child: const SingleChildScrollView(
-            child: Center(
-                child: Column(
-              //mainAxisAlignment: MainAxisAlignment.center,
-              //crossAxisAlignment: CrossAxisAlignment.center,
+        padding:
+            EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.10),
+        child: SingleChildScrollView(
+          child: Center(
+            child: Column(
               children: [
-                Column(
+                Image.asset(
+                  'assets/images/Logo_Light.png',
+                  height: 200,
+                ),
+                const SizedBox(
+                  height: 50,
+                ),
+                //ACCOUNT NAME
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Row(
-                      children: [
-                        Text("Account"),
-                        SizedBox(
-                          width: 20,
+                    const Text('Account', style: TextStyle(fontSize: 30)),
+                    const SizedBox(
+                      width: 50,
+                    ),
+                    const Text('ACCOUNT_NAME', style: TextStyle(fontSize: 30)),
+                    const SizedBox(
+                      width: 50,
+                    ),
+                    ElevatedButton(
+                        style: TextButton.styleFrom(
+                          backgroundColor: const Color.fromARGB(0, 128, 109, 0),
+                          foregroundColor: AppTheme.light,
                         ),
-                        Text("Edit"),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Text("Account Name"),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Text("Account Email"),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Text("Account Password"),
+                        onPressed: () => {},
+                        child: const Icon(Icons.edit))
                   ],
                 ),
+                const SizedBox(
+                  height: 50,
+                ),
+                //ACCOUNT EMAIL
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text('EMAIL', style: TextStyle(fontSize: 30)),
+                    const SizedBox(
+                      width: 50,
+                    ),
+                    const Text('ACCOUNT_EMAIL', style: TextStyle(fontSize: 30)),
+                    const SizedBox(
+                      width: 50,
+                    ),
+                    ElevatedButton(
+                        style: TextButton.styleFrom(
+                          backgroundColor: const Color.fromARGB(0, 128, 109, 0),
+                          foregroundColor: AppTheme.light,
+                        ),
+                        onPressed: () => {},
+                        child: const Icon(Icons.edit))
+                  ],
+                ),
+                //ACCOUNT PASSWORD
+                const SizedBox(
+                  height: 50,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text('Password', style: TextStyle(fontSize: 30)),
+                    const SizedBox(
+                      width: 50,
+                    ),
+                    const Text('ACCOUNT_PASSWORD',
+                        style: TextStyle(fontSize: 30)),
+                    const SizedBox(
+                      width: 50,
+                    ),
+                    ElevatedButton(
+                        style: TextButton.styleFrom(
+                          backgroundColor: const Color.fromARGB(0, 128, 109, 0),
+                          foregroundColor: AppTheme.light,
+                        ),
+                        onPressed: () => {},
+                        child: const Icon(Icons.edit))
+                  ],
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
               ],
-            )),
-          )),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
