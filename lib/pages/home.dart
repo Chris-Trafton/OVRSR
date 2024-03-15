@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 // import 'package:ovrsr/utils/apptheme.dart';
 // import 'package:ovrsr/widgets/easySnackBar.dart';
 import 'package:ovrsr/widgets/main_drawer.dart';
-
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -47,8 +45,7 @@ class _HomePageState extends State<HomePage> {
                 return const Column(
                   children: [
                     PlayerWidget(),
-                    Divider(),
-                    Expanded(child: _WebViewWidget()),
+                    // Divider(), Maybe we'll use this if we want to have some text or notepade.
                   ],
                 );
               }
@@ -75,7 +72,8 @@ class PlayerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return YoutubePlayer(
       controller: YoutubePlayerController.fromVideoId(
-        videoId: 'gCRNEJxDJKM',
+        // Note: The video must be public
+        videoId: 'vFJ8cWhbTGA', // video ID is code in URL after v=
         params: const YoutubePlayerParams(
           showControls: true,
           showFullscreenButton: true,
@@ -83,27 +81,5 @@ class PlayerWidget extends StatelessWidget {
       ),
       aspectRatio: 16 / 9,
     );
-  }
-}
-
-class _WebViewWidget extends StatefulWidget {
-  const _WebViewWidget();
-
-  @override
-  State<_WebViewWidget> createState() => _WebViewWidgetState();
-}
-
-class _WebViewWidgetState extends State<_WebViewWidget> {
-  @override
-  void initState() {
-    super.initState();
-    _controller = WebViewController()..loadRequest(Uri.https('flutter.dev'));
-  }
-
-  late final WebViewController _controller;
-
-  @override
-  Widget build(BuildContext context) {
-    return WebViewWidget(controller: _controller);
   }
 }

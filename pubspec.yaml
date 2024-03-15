@@ -47,7 +47,6 @@ dependencies:
   flutter_riverpod: ^2.4.10
   youtube_video_player: ^0.1.0
   youtube_player_iframe: ^4.0.4
-  webview_flutter: ^4.7.0
 
 dev_dependencies:
   flutter_test:
