@@ -37,7 +37,73 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       drawer: MainDrawer(),
-      body: const Center(),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(32),
+        child: SizedBox(
+          height: 1000,
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              if (constraints.maxWidth < 600) {
+                return const Column(
+                  children: [
+                    PlayerWidget(),
+                    Divider(),
+                    Expanded(child: _WebViewWidget()),
+                  ],
+                );
+              }
+
+              return const Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(child: PlayerWidget()),
+                  // VerticalDivider(), Maybe we'll use this if we want to have some text or notepad to the side.
+                ],
+              );
+            },
+          ),
+        ),
+      ),
     );
+  }
+}
+
+class PlayerWidget extends StatelessWidget {
+  const PlayerWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return YoutubePlayer(
+      controller: YoutubePlayerController.fromVideoId(
+        videoId: 'gCRNEJxDJKM',
+        params: const YoutubePlayerParams(
+          showControls: true,
+          showFullscreenButton: true,
+        ),
+      ),
+      aspectRatio: 16 / 9,
+    );
+  }
+}
+
+class _WebViewWidget extends StatefulWidget {
+  const _WebViewWidget();
+
+  @override
+  State<_WebViewWidget> createState() => _WebViewWidgetState();
+}
+
+class _WebViewWidgetState extends State<_WebViewWidget> {
+  @override
+  void initState() {
+    super.initState();
+    _controller = WebViewController()..loadRequest(Uri.https('flutter.dev'));
+  }
+
+  late final WebViewController _controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return WebViewWidget(controller: _controller);
   }
 }
