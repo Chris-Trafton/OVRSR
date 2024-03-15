@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:ovrsr/utils/apptheme.dart';
-import 'package:ovrsr/widgets/easySnackBar.dart';
+// import 'package:google_fonts/google_fonts.dart';
+// import 'package:ovrsr/utils/apptheme.dart';
+// import 'package:ovrsr/widgets/easySnackBar.dart';
 import 'package:ovrsr/widgets/main_drawer.dart';
-import 'package:youtube_video_player/potrait_player.dart';
+
+import 'package:youtube_player_iframe/youtube_player_iframe.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -35,27 +37,7 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       drawer: MainDrawer(),
-      body: const Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Expanded(
-              child: Column(
-                children: [
-                  Text("Welcome to OVSRS"),
-                  Expanded(
-                    child: PotraitPlayer(
-                        //link: 'https://youtube.com/live/_TAcY9b1d10?feature=share',
-                        link: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-                        aspectRatio: 16 / 9),
-                  ),
-                  Text("This is the bottom")
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
+      body: const Center(),
     );
   }
 }
