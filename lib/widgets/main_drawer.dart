@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ovrsr/pages/account.dart';
 import 'package:ovrsr/pages/home.dart';
 import 'package:ovrsr/pages/login.dart';
-import 'package:ovrsr/pages/URLentry.dart';
+import 'package:ovrsr/pages/video_select.dart';
 import 'package:ovrsr/utils/apptheme.dart';
 
 class MainDrawer extends StatelessWidget {
@@ -29,16 +29,6 @@ class MainDrawer extends StatelessWidget {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => const HomePage(),
-                ),
-              );
-            },
-          ),
-          ListTile(
-            title: const Text('URL Entry'),
-            onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => const UrlEntryPage(),
                 ),
               );
             },
