@@ -1,61 +1,120 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:ovrsr/utils/apptheme.dart';
-import 'package:ovrsr/widgets/easySnackBar.dart';
+import 'package:ovrsr/pages/video_select.dart';
 import 'package:ovrsr/widgets/main_drawer.dart';
-import 'package:youtube_video_player/potrait_player.dart';
+import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage({Key? key}) : super(key: key);
 
   @override
-  // ignore: no_logic_in_create_state
-  State<HomePage> createState() => _HomePageState();
+  _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  String? _videoId; // Default video ID = 'vFJ8cWhbTGA'
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text('Home'),
-          ],
-        ),
-        actions: [
-          Image.asset(
-            'assets/images/Logo_Light.png',
-            height: 40,
+        title: const Text('Home'),
+      ),
+      drawer: const MainDrawer(),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(32),
+        child: SizedBox(
+          height: 1000,
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              if (constraints.maxWidth < 600) {
+                return Column(
+                  children: [
+                    PlayerWidget(
+                        videoId: _videoId), // Pass videoId to PlayerWidget
+                    const Divider(),
+                    ElevatedButton(
+                      onPressed: () async {
+                        // Navigate to VideoSelectPage and await result
+                        final result = await Navigator.of(context).push<String>(
+                          MaterialPageRoute(
+                            builder: (context) => const VideoSelectPage(),
+                          ),
+                        );
+                        // Update _videoId with the returned video ID
+                        if (result != null) {
+                          setState(() {
+                            _videoId = result;
+                          });
+                        }
+                      },
+                      child: const Text('Video Select'),
+                    ),
+                  ],
+                );
+              } else {
+                return Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(child: PlayerWidget(videoId: _videoId)),
+                    const VerticalDivider(),
+                    ElevatedButton(
+                      onPressed: () async {
+                        // Navigate to VideoSelectPage and await result
+                        final result = await Navigator.of(context).push<String>(
+                          MaterialPageRoute(
+                            builder: (context) => const VideoSelectPage(),
+                          ),
+                        );
+                        // Update _videoId with the returned video ID
+                        if (result != null) {
+                          setState(() {
+                            _videoId = result;
+                          });
+                        }
+                      },
+                      child: const Text('Video Select'),
+                    ),
+                  ],
+                );
+              }
+            },
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
-          )
-        ],
-      ),
-      drawer: MainDrawer(),
-      body: const Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Expanded(
-              child: Column(
-                children: [
-                  Text("Welcome to OVRSR"),
-                  Expanded(
-                    child: PotraitPlayer(
-                        //link: 'https://youtube.com/live/_TAcY9b1d10?feature=share',
-                        link: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-                        aspectRatio: 16 / 9),
-                  ),
-                  Text("This is the bottom")
-                ],
-              ),
-            ),
-          ],
         ),
       ),
+    );
+  }
+}
+
+class PlayerWidget extends StatelessWidget {
+  final String? videoId; // Receive videoId as a parameter
+
+  const PlayerWidget({Key? key, this.videoId}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    if (videoId == null) {
+      return YoutubePlayer(
+        key: UniqueKey(), // Add a UniqueKey here
+        controller: YoutubePlayerController.fromVideoId(
+          videoId: 'B4-L2nfGcuE',
+          params: const YoutubePlayerParams(
+            showControls: true,
+            showFullscreenButton: true,
+          ),
+        ),
+        aspectRatio: 16 / 9,
+      );
+    }
+    return YoutubePlayer(
+      key: UniqueKey(), // Add a UniqueKey here
+      controller: YoutubePlayerController.fromVideoId(
+        videoId: videoId!,
+        params: const YoutubePlayerParams(
+          showControls: true,
+          showFullscreenButton: true,
+        ),
+      ),
+      aspectRatio: 16 / 9,
     );
   }
 }
