@@ -96,7 +96,7 @@ class PlayerWidget extends StatelessWidget {
       return YoutubePlayer(
         key: UniqueKey(), // Add a UniqueKey here
         controller: YoutubePlayerController.fromVideoId(
-          videoId: 'vFJ8cWhbTGA',
+          videoId: 'B4-L2nfGcuE',
           params: const YoutubePlayerParams(
             showControls: true,
             showFullscreenButton: true,
