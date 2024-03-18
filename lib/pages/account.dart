@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:ovrsr/utils/apptheme.dart';
 import 'package:ovrsr/widgets/main_drawer.dart';
+import 'package:http/http.dart' as http;
 
 class AccountPage extends StatelessWidget {
   const AccountPage({super.key});
@@ -45,11 +46,11 @@ class AccountPage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text('Account', style: TextStyle(fontSize: 30)),
+                    const Text('Username', style: TextStyle(fontSize: 30)),
                     const SizedBox(
                       width: 50,
                     ),
-                    const Text('ACCOUNT_NAME', style: TextStyle(fontSize: 30)),
+                    const Text('USERNAME', style: TextStyle(fontSize: 30)),
                     const SizedBox(
                       width: 50,
                     ),
@@ -69,7 +70,7 @@ class AccountPage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text('EMAIL', style: TextStyle(fontSize: 30)),
+                    const Text('Email', style: TextStyle(fontSize: 30)),
                     const SizedBox(
                       width: 50,
                     ),
