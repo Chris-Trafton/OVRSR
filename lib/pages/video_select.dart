@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ovrsr/utils/apptheme.dart';
 import 'package:ovrsr/widgets/main_drawer.dart';
 
 class VideoSelectPage extends StatefulWidget {
@@ -23,13 +24,26 @@ class _VideoSelectPageState extends State<VideoSelectPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TextField(
-              controller: _controller,
-              decoration: const InputDecoration(
-                labelText: 'Enter Video ID',
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  width: 500,
+                  child: TextField(
+                    controller: _controller,
+                    decoration: const InputDecoration(
+                      labelText: 'Enter Video ID',
+                    ),
+                  ),
+                ),
+              ],
             ),
+            const SizedBox(height: 20),
             ElevatedButton(
+              style: TextButton.styleFrom(
+                backgroundColor: const Color.fromARGB(0, 128, 109, 0),
+                foregroundColor: AppTheme.light,
+              ),
               onPressed: () {
                 // Retrieve the video ID entered by the user
                 String videoId = _controller.text.trim();

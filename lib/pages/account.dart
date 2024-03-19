@@ -1,14 +1,19 @@
 //https://medium.flutterdevs.com/verify-email-and-reset-password-in-flutter-31d07db1db76
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ovrsr/provider/userProfileProvider.dart';
 import 'package:ovrsr/utils/apptheme.dart';
+import 'package:ovrsr/widgets/formatters/obscure_text.dart';
 import 'package:ovrsr/widgets/main_drawer.dart';
-import 'package:http/http.dart' as http;
+//import 'package:http/http.dart' as http;
 
-class AccountPage extends StatelessWidget {
+class AccountPage extends ConsumerWidget {
   const AccountPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    UserProfileProvider _UserProfile = ref.read(userProfileProvider);
+
     return Scaffold(
       appBar: AppBar(
         title: const Row(
@@ -46,11 +51,11 @@ class AccountPage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text('Username', style: TextStyle(fontSize: 30)),
+                    const Text('Username:', style: TextStyle(fontSize: 30)),
                     const SizedBox(
                       width: 50,
                     ),
-                    const Text('USERNAME', style: TextStyle(fontSize: 30)),
+                    Text(_UserProfile.userName, style: TextStyle(fontSize: 30)),
                     const SizedBox(
                       width: 50,
                     ),
@@ -70,11 +75,11 @@ class AccountPage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text('Email', style: TextStyle(fontSize: 30)),
+                    const Text('Email:', style: TextStyle(fontSize: 30)),
                     const SizedBox(
                       width: 50,
                     ),
-                    const Text('ACCOUNT_EMAIL', style: TextStyle(fontSize: 30)),
+                    Text(_UserProfile.email, style: TextStyle(fontSize: 30)),
                     const SizedBox(
                       width: 50,
                     ),
@@ -94,12 +99,12 @@ class AccountPage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text('Password', style: TextStyle(fontSize: 30)),
+                    const Text('Password:', style: TextStyle(fontSize: 30)),
                     const SizedBox(
                       width: 50,
                     ),
-                    const Text('ACCOUNT_PASSWORD',
-                        style: TextStyle(fontSize: 30)),
+                    Text(obscureText(_UserProfile.password),
+                        style: const TextStyle(fontSize: 30)),
                     const SizedBox(
                       width: 50,
                     ),
