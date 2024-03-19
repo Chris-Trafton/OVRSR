@@ -74,29 +74,33 @@ class _HomePageState extends State<HomePage> {
                 return Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Expanded(child: PlayerWidget(videoId: _videoId)),
-                    const VerticalDivider(),
-                    ElevatedButton(
-                      style: TextButton.styleFrom(
-                        backgroundColor: const Color.fromARGB(0, 128, 109, 0),
-                        foregroundColor: AppTheme.light,
+                    SizedBox(
+                      width: 250,
+                      child: ElevatedButton(
+                        style: TextButton.styleFrom(
+                          backgroundColor: const Color.fromARGB(0, 128, 109, 0),
+                          foregroundColor: AppTheme.light,
+                        ),
+                        onPressed: () async {
+                          // Navigate to VideoSelectPage and await result
+                          final result =
+                              await Navigator.of(context).push<String>(
+                            MaterialPageRoute(
+                              builder: (context) => const VideoSelectPage(),
+                            ),
+                          );
+                          // Update _videoId with the returned video ID
+                          if (result != null) {
+                            setState(() {
+                              _videoId = result;
+                            });
+                          }
+                        },
+                        child: const Text('Video Select'),
                       ),
-                      onPressed: () async {
-                        // Navigate to VideoSelectPage and await result
-                        final result = await Navigator.of(context).push<String>(
-                          MaterialPageRoute(
-                            builder: (context) => const VideoSelectPage(),
-                          ),
-                        );
-                        // Update _videoId with the returned video ID
-                        if (result != null) {
-                          setState(() {
-                            _videoId = result;
-                          });
-                        }
-                      },
-                      child: const Text('Video Select'),
                     ),
+                    const VerticalDivider(),
+                    Expanded(child: PlayerWidget(videoId: _videoId)),
                   ],
                 );
               }
