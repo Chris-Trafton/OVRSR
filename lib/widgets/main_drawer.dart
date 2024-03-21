@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ovrsr/pages/account.dart';
 import 'package:ovrsr/pages/home.dart';
 import 'package:ovrsr/pages/login.dart';
 import 'package:ovrsr/pages/video_select.dart';
+import 'package:ovrsr/provider/userProfileProvider.dart';
 import 'package:ovrsr/utils/apptheme.dart';
 
-class MainDrawer extends StatelessWidget {
+class MainDrawer extends ConsumerWidget {
   const MainDrawer({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -46,6 +48,7 @@ class MainDrawer extends StatelessWidget {
           ListTile(
             title: const Text('Logout'),
             onTap: () {
+              ref.read(userProfileProvider).wipe();
               // clear the stack and start with the login page
               Navigator.of(context).pushAndRemoveUntil(
                 MaterialPageRoute(

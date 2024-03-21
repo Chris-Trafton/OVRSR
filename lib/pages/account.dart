@@ -51,21 +51,31 @@ class AccountPage extends ConsumerWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text('Username:', style: TextStyle(fontSize: 30)),
+                    const SizedBox(
+                      width: 150,
+                    ),
+                    const SizedBox(
+                      width: 150,
+                      child: Text('Username:', style: TextStyle(fontSize: 30)),
+                    ),
                     const SizedBox(
                       width: 50,
                     ),
-                    Text(_UserProfile.userName, style: TextStyle(fontSize: 30)),
+                    SizedBox(
+                      width: 300,
+                      child: Text(_UserProfile.userName,
+                          style: TextStyle(fontSize: 30)),
+                    ),
                     const SizedBox(
                       width: 50,
                     ),
-                    ElevatedButton(
-                        style: TextButton.styleFrom(
-                          backgroundColor: const Color.fromARGB(0, 128, 109, 0),
-                          foregroundColor: AppTheme.light,
-                        ),
-                        onPressed: () => {},
-                        child: const Icon(Icons.edit))
+                    // ElevatedButton(
+                    //     style: TextButton.styleFrom(
+                    //       backgroundColor: const Color.fromARGB(0, 128, 109, 0),
+                    //       foregroundColor: AppTheme.light,
+                    //     ),
+                    //     onPressed: () => {},
+                    //     child: const Icon(Icons.edit))
                   ],
                 ),
                 const SizedBox(
@@ -75,21 +85,31 @@ class AccountPage extends ConsumerWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text('Email:', style: TextStyle(fontSize: 30)),
+                    const SizedBox(
+                      width: 150,
+                    ),
+                    const SizedBox(
+                      width: 150,
+                      child: Text('Email:', style: TextStyle(fontSize: 30)),
+                    ),
                     const SizedBox(
                       width: 50,
                     ),
-                    Text(_UserProfile.email, style: TextStyle(fontSize: 30)),
+                    SizedBox(
+                      width: 300,
+                      child: Text(_UserProfile.email,
+                          style: TextStyle(fontSize: 30)),
+                    ),
                     const SizedBox(
                       width: 50,
                     ),
-                    ElevatedButton(
-                        style: TextButton.styleFrom(
-                          backgroundColor: const Color.fromARGB(0, 128, 109, 0),
-                          foregroundColor: AppTheme.light,
-                        ),
-                        onPressed: () => {},
-                        child: const Icon(Icons.edit))
+                    // ElevatedButton(
+                    //     style: TextButton.styleFrom(
+                    //       backgroundColor: const Color.fromARGB(0, 128, 109, 0),
+                    //       foregroundColor: AppTheme.light,
+                    //     ),
+                    //     onPressed: () => {},
+                    //     child: const Icon(Icons.edit))
                   ],
                 ),
                 //ACCOUNT PASSWORD
@@ -99,22 +119,31 @@ class AccountPage extends ConsumerWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text('Password:', style: TextStyle(fontSize: 30)),
+                    const SizedBox(
+                      width: 150,
+                    ),
+                    const SizedBox(
+                      width: 150,
+                      child: Text('Password:', style: TextStyle(fontSize: 30)),
+                    ),
                     const SizedBox(
                       width: 50,
                     ),
-                    Text(obscureText(_UserProfile.password),
-                        style: const TextStyle(fontSize: 30)),
+                    SizedBox(
+                      width: 300,
+                      child: Text(obscureText(_UserProfile.password),
+                          style: const TextStyle(fontSize: 30)),
+                    ),
                     const SizedBox(
                       width: 50,
                     ),
-                    ElevatedButton(
-                        style: TextButton.styleFrom(
-                          backgroundColor: const Color.fromARGB(0, 128, 109, 0),
-                          foregroundColor: AppTheme.light,
-                        ),
-                        onPressed: () => {},
-                        child: const Icon(Icons.edit))
+                    // ElevatedButton(
+                    //     style: TextButton.styleFrom(
+                    //       backgroundColor: const Color.fromARGB(0, 128, 109, 0),
+                    //       foregroundColor: AppTheme.light,
+                    //     ),
+                    //     onPressed: () => {},
+                    //     child: const Icon(Icons.edit))
                   ],
                 ),
                 const SizedBox(
