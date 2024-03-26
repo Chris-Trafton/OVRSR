@@ -30,11 +30,14 @@ class _VideoSelectPageState extends State<VideoSelectPage> {
                 SizedBox(
                   width: 500,
                   child: TextField(
-                    controller: _controller,
-                    decoration: const InputDecoration(
-                      labelText: 'Enter Video ID',
-                    ),
-                  ),
+                      controller: _controller,
+                      decoration: const InputDecoration(
+                        labelText: 'Enter Video ID',
+                      ),
+                      style: const TextStyle(
+                          color: AppTheme.light,
+                          decoration: TextDecoration.underline,
+                          decorationColor: AppTheme.light)),
                 ),
               ],
             ),

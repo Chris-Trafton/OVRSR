@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ovrsr/pages/home.dart';
+import 'package:ovrsr/pages/password_reset.dart';
 import 'package:ovrsr/provider/userProfileProvider.dart';
 import 'package:ovrsr/utils/apptheme.dart';
 import 'package:ovrsr/widgets/easySnackBar.dart';
@@ -378,6 +379,18 @@ class _LoginPage extends ConsumerState<LoginPage> {
                             child: _isLogin
                                 ? const Text('Sign Up')
                                 : const Text('Log In'),
+                          ),
+                          //Button for if you forgot your password
+                          TextButton(
+                            style: TextButton.styleFrom(
+                              backgroundColor:
+                                  const Color.fromARGB(0, 128, 109, 0),
+                              foregroundColor: AppTheme.light,
+                            ),
+                            onPressed: () => Navigator.of(context).push<String>(
+                                MaterialPageRoute(
+                                    builder: (context) => ResetPasswordPage())),
+                            child: const Text('Forgot Password'),
                           ),
                         ],
                       ),
