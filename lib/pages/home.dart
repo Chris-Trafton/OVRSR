@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ovrsr/pages/video_select.dart';
+import 'package:ovrsr/pages/new_video_item.dart';
 import 'package:ovrsr/utils/apptheme.dart';
 import 'package:ovrsr/widgets/main_drawer.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage> {
                         // Navigate to VideoSelectPage and await result
                         final result = await Navigator.of(context).push<String>(
                           MaterialPageRoute(
-                            builder: (context) => const VideoSelectPage(),
+                            builder: (context) => const NewVideoItem(),
                           ),
                         );
                         // Update _videoId with the returned video ID
@@ -86,7 +86,7 @@ class _HomePageState extends State<HomePage> {
                           final result =
                               await Navigator.of(context).push<String>(
                             MaterialPageRoute(
-                              builder: (context) => const VideoSelectPage(),
+                              builder: (context) => const NewVideoItem(),
                             ),
                           );
                           // Update _videoId with the returned video ID
