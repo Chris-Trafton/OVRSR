@@ -13,6 +13,9 @@ void editAccount() {}
 class AccountPage extends ConsumerWidget {
   const AccountPage({super.key});
 
+//var _isEditUsername = false;
+//var _isEditEmail = false;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     UserProfileProvider _UserProfile = ref.read(userProfileProvider);
