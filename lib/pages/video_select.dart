@@ -16,7 +16,21 @@ class _VideoSelectPageState extends State<VideoSelectPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Video Select'),
+        title: const Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text('Video Select'),
+          ],
+        ),
+        actions: [
+          Image.asset(
+            'assets/images/Logo_Light.png',
+            height: 40,
+          ),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10),
+          )
+        ],
       ),
       drawer: const MainDrawer(),
       body: Padding(

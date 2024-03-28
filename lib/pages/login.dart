@@ -362,41 +362,50 @@ class _LoginPage extends ConsumerState<LoginPage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          _isLogin
-                              ? const Text('Don\'t have an account?')
-                              : const Text('Have an account?'),
-                          TextButton(
-                            style: TextButton.styleFrom(
-                              backgroundColor:
-                                  const Color.fromARGB(0, 128, 109, 0),
-                              foregroundColor: AppTheme.light,
-                            ),
-                            onPressed: () {
-                              setState(() {
-                                _isLogin = !_isLogin;
-                              });
-                            },
-                            child: _isLogin
-                                ? const Text('Sign Up')
-                                : const Text('Log In'),
-                          ),
-                          //Button for if you forgot your password
-                          TextButton(
-                            style: TextButton.styleFrom(
-                              backgroundColor:
-                                  const Color.fromARGB(0, 128, 109, 0),
-                              foregroundColor: AppTheme.light,
-                            ),
-                            onPressed: () => Navigator.of(context).push<String>(
-                                MaterialPageRoute(
-                                    builder: (context) => ResetPasswordPage())),
-                            child: const Text('Forgot Password'),
+                          Column(
+                            children: [
+                              Row(
+                                children: [
+                                  _isLogin
+                                      ? const Text('Don\'t have an account?')
+                                      : const Text('Have an account?'),
+                                  TextButton(
+                                    style: TextButton.styleFrom(
+                                      backgroundColor:
+                                          const Color.fromARGB(0, 128, 109, 0),
+                                      foregroundColor: AppTheme.light,
+                                    ),
+                                    onPressed: () {
+                                      setState(() {
+                                        _isLogin = !_isLogin;
+                                      });
+                                    },
+                                    child: _isLogin
+                                        ? const Text('Sign Up')
+                                        : const Text('Log In'),
+                                  ),
+                                ],
+                              ),
+                              //Button for if you forgot your passwords
+                              TextButton(
+                                style: TextButton.styleFrom(
+                                  backgroundColor:
+                                      const Color.fromARGB(0, 128, 109, 0),
+                                  foregroundColor: AppTheme.light,
+                                ),
+                                onPressed: () => Navigator.of(context)
+                                    .push<String>(MaterialPageRoute(
+                                        builder: (context) =>
+                                            ResetPasswordPage())),
+                                child: const Text('Forgot Password'),
+                              ),
+                            ],
                           ),
                         ],
                       ),
                     ),
                   ),
-                )
+                ),
               ],
             ),
           ),

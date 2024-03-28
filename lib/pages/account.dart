@@ -6,18 +6,21 @@ import 'package:ovrsr/provider/userProfileProvider.dart';
 import 'package:ovrsr/utils/apptheme.dart';
 import 'package:ovrsr/widgets/formatters/obscure_text.dart';
 import 'package:ovrsr/widgets/main_drawer.dart';
+
 //import 'package:http/http.dart' as http;
-
-void editAccount() {}
-
-class AccountPage extends ConsumerWidget {
+class AccountPage extends ConsumerStatefulWidget {
   const AccountPage({super.key});
 
-//var _isEditUsername = false;
-//var _isEditEmail = false;
+  @override
+  ConsumerState<AccountPage> createState() => _AccountPageState();
+}
+
+class _AccountPageState extends ConsumerState<AccountPage> {
+  var _isEditUsername = false;
+  var _isEditEmail = false;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     UserProfileProvider _UserProfile = ref.read(userProfileProvider);
 
     return Scaffold(
@@ -104,7 +107,7 @@ class AccountPage extends ConsumerWidget {
                     SizedBox(
                       width: 300,
                       child: Text(_UserProfile.email,
-                          style: TextStyle(fontSize: 30)),
+                          style: const TextStyle(fontSize: 30)),
                     ),
                     const SizedBox(
                       width: 50,
@@ -146,7 +149,7 @@ class AccountPage extends ConsumerWidget {
                     ),
                     ElevatedButton(
                         style: TextButton.styleFrom(
-                          backgroundColor: Color.fromARGB(0, 128, 109, 0),
+                          backgroundColor: const Color.fromARGB(0, 128, 109, 0),
                           foregroundColor: AppTheme.light,
                         ),
                         onPressed: () => Navigator.of(context).push<String>(
