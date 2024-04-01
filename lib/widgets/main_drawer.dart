@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ovrsr/pages/account.dart';
 import 'package:ovrsr/pages/home.dart';
 import 'package:ovrsr/pages/login.dart';
-import 'package:ovrsr/pages/new_video_item.dart';
+import 'package:ovrsr/pages/add_video_page.dart';
 import 'package:ovrsr/provider/userProfileProvider.dart';
 import 'package:ovrsr/utils/apptheme.dart';
 
