@@ -1,4 +1,5 @@
 //https://medium.flutterdevs.com/verify-email-and-reset-password-in-flutter-31d07db1db76
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ovrsr/pages/password_reset.dart';
@@ -141,10 +142,10 @@ class _AccountPageState extends ConsumerState<AccountPage> {
                           backgroundColor: const Color.fromARGB(0, 128, 109, 0),
                           foregroundColor: AppTheme.light,
                         ),
-                        onPressed: () => {
+                        onPressed: () async => {
                               _isEditEmail = !_isEditEmail,
                               setState(() {}),
-                              //updateEmail(_UserProfile.email),
+                              await _UserProfile.writeUserProfileToDb(),
                             },
                         child: _isEditEmail
                             ? const Icon(Icons.save)

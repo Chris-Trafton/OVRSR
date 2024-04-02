@@ -27,12 +27,6 @@ class UserProfileProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  String get links => _userProfile.links;
-  set links(String value) {
-    _userProfile.links = value;
-    notifyListeners();
-  }
-
   void wipe() {
     _userProfile = UserProfile.empty();
     _dataLoaded = false;
