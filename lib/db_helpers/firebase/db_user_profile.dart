@@ -80,4 +80,36 @@ class DBUserProfile {
     // Return status
     return success;
   }
+
+  static Future<bool> saveVideoItem(String title, String url) async {
+    bool success = false;
+
+    var db = FirebaseFirestore.instance;
+    if (FirebaseAuth.instance.currentUser != null) {
+      final FirebaseAuth auth = FirebaseAuth.instance;
+      final User? user = auth.currentUser;
+
+      if (user == null) {
+        return false;
+      }
+      String uid = user.uid;
+      try {
+        await db
+            .collection(FS_COL_SA_USER_PROFILES)
+            .doc(uid)
+            .collection('video_items')
+            .add({
+          'title': title,
+          'url': url,
+        });
+        success = true;
+      } catch (e) {
+        print(
+            "Encountered problem saving video item to firestore: ${e.toString()}");
+        success = false;
+      }
+    }
+
+    return success;
+  }
 }
