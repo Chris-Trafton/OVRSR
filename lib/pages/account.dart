@@ -6,6 +6,7 @@ import 'package:ovrsr/provider/userProfileProvider.dart';
 import 'package:ovrsr/utils/apptheme.dart';
 import 'package:ovrsr/widgets/formatters/obscure_text.dart';
 import 'package:ovrsr/widgets/main_drawer.dart';
+//change user https://stackoverflow.com/questions/47659167/firebase-change-usernameemail-of-registered-user
 
 //import 'package:http/http.dart' as http;
 class AccountPage extends ConsumerStatefulWidget {
@@ -72,8 +73,17 @@ class _AccountPageState extends ConsumerState<AccountPage> {
                     ),
                     SizedBox(
                       width: 300,
-                      child: Text(_UserProfile.userName,
-                          style: const TextStyle(fontSize: 30)),
+                      //make it change based off the bool
+                      child: !_isEditUsername
+                          ? Text(_UserProfile.userName,
+                              style: const TextStyle(fontSize: 30))
+                          : TextFormField(
+                              initialValue: _UserProfile.userName,
+                              onChanged: (value) {
+                                _UserProfile.userName = value;
+                              },
+                              style: const TextStyle(fontSize: 30),
+                            ),
                     ),
                     const SizedBox(
                       width: 50,
@@ -83,8 +93,14 @@ class _AccountPageState extends ConsumerState<AccountPage> {
                           backgroundColor: const Color.fromARGB(0, 128, 109, 0),
                           foregroundColor: AppTheme.light,
                         ),
-                        onPressed: () => {},
-                        child: const Icon(Icons.edit))
+                        onPressed: () async => {
+                              _isEditUsername = !_isEditUsername,
+                              setState(() {}),
+                              await _UserProfile.writeUserProfileToDb(),
+                            },
+                        child: _isEditUsername
+                            ? const Icon(Icons.save)
+                            : const Icon(Icons.edit))
                   ],
                 ),
                 const SizedBox(
@@ -106,8 +122,16 @@ class _AccountPageState extends ConsumerState<AccountPage> {
                     ),
                     SizedBox(
                       width: 300,
-                      child: Text(_UserProfile.email,
-                          style: const TextStyle(fontSize: 30)),
+                      child: !_isEditEmail
+                          ? Text(_UserProfile.email,
+                              style: const TextStyle(fontSize: 30))
+                          : TextFormField(
+                              initialValue: _UserProfile.email,
+                              onChanged: (value) {
+                                _UserProfile.email = value;
+                              },
+                              style: const TextStyle(fontSize: 30),
+                            ),
                     ),
                     const SizedBox(
                       width: 50,
@@ -117,8 +141,14 @@ class _AccountPageState extends ConsumerState<AccountPage> {
                           backgroundColor: const Color.fromARGB(0, 128, 109, 0),
                           foregroundColor: AppTheme.light,
                         ),
-                        onPressed: () => {},
-                        child: const Icon(Icons.edit))
+                        onPressed: () => {
+                              _isEditEmail = !_isEditEmail,
+                              setState(() {}),
+                              //updateEmail(_UserProfile.email),
+                            },
+                        child: _isEditEmail
+                            ? const Icon(Icons.save)
+                            : const Icon(Icons.edit))
                   ],
                 ),
                 //ACCOUNT PASSWORD
