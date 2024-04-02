@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:ovrsr/utils/apptheme.dart';
+import 'package:ovrsr/widgets/formatters/video_ID.dart';
 
 import '../db_helpers/firebase/db_user_profile.dart';
 
@@ -46,7 +49,10 @@ class _AddVideoPageState extends State<AddVideoPage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   TextFormField(
-                    decoration: const InputDecoration(labelText: 'Title'),
+                    cursorColor: AppTheme.light,
+                    decoration: const InputDecoration(
+                      labelText: 'Title',
+                    ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter a title';
@@ -57,26 +63,21 @@ class _AddVideoPageState extends State<AddVideoPage> {
                       _title = value!;
                     },
                   ),
+                  const SizedBox(height: 20),
                   TextFormField(
+                    cursorColor: AppTheme.light,
                     decoration: const InputDecoration(
-                      labelText: 'YouTube Video ID',
-                      suffixIcon: Tooltip(
-                        message:
-                            'A video ID is the unique identifier for the video in the URL, usually after "v=" or "live/" in a YouTube URL',
-                        child: IconButton(
-                          onPressed: null,
-                          icon: Icon(Icons.help_outline),
-                        ),
-                      ),
+                      labelText: 'YouTube Video URL',
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter a YouTube video ID';
+                        return 'Please enter a YouTube video URL';
                       }
                       return null;
                     },
                     onSaved: (value) {
-                      _url = value!;
+                      //_url = Text(extractVideoID(value!)) as String;
+                      _url = extractVideoID(value!);
                     },
                   ),
                   const SizedBox(height: 20),
