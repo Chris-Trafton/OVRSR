@@ -144,6 +144,7 @@ class _AccountPageState extends ConsumerState<AccountPage> {
                         onPressed: () => {
                               _isEditEmail = !_isEditEmail,
                               setState(() {}),
+                              //updateEmail(_UserProfile.email),
                             },
                         child: _isEditEmail
                             ? const Icon(Icons.save)
