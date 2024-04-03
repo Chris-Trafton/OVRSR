@@ -24,6 +24,7 @@ class _AccountPageState extends ConsumerState<AccountPage> {
   @override
   Widget build(BuildContext context) {
     UserProfileProvider _UserProfile = ref.read(userProfileProvider);
+    User? user = FirebaseAuth.instance.currentUser;
 
     return Scaffold(
       appBar: AppBar(
@@ -139,13 +140,14 @@ class _AccountPageState extends ConsumerState<AccountPage> {
                     ),
                     ElevatedButton(
                         style: TextButton.styleFrom(
-                          backgroundColor: const Color.fromARGB(0, 128, 109, 0),
+                          backgroundColor: Color.fromARGB(0, 131, 126, 98),
                           foregroundColor: AppTheme.light,
                         ),
                         onPressed: () async => {
                               _isEditEmail = !_isEditEmail,
                               setState(() {}),
                               await _UserProfile.writeUserProfileToDb(),
+                              await user?.updateEmail(_UserProfile.email),
                             },
                         child: _isEditEmail
                             ? const Icon(Icons.save)

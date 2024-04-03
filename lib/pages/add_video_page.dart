@@ -84,6 +84,10 @@ class _AddVideoPageState extends State<AddVideoPage> {
                   Row(
                     children: [
                       ElevatedButton(
+                        style: TextButton.styleFrom(
+                          backgroundColor: const Color.fromARGB(0, 128, 109, 0),
+                          foregroundColor: AppTheme.light,
+                        ),
                         onPressed: () {
                           Navigator.pop(context);
                         },
@@ -91,6 +95,10 @@ class _AddVideoPageState extends State<AddVideoPage> {
                       ),
                       const SizedBox(width: 20),
                       ElevatedButton(
+                        style: TextButton.styleFrom(
+                          backgroundColor: const Color.fromARGB(0, 128, 109, 0),
+                          foregroundColor: AppTheme.light,
+                        ),
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
                             _formKey.currentState!.save();

@@ -34,7 +34,21 @@ class ResetPasswordPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Reset Password'),
+        title: const Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text('Reset Password'),
+          ],
+        ),
+        actions: [
+          Image.asset(
+            'assets/images/Logo_Light.png',
+            height: 40,
+          ),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10),
+          )
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -63,7 +77,7 @@ class ResetPasswordPage extends StatelessWidget {
                 foregroundColor: AppTheme.light,
               ),
               onPressed: () => _resetPassword(context),
-              child: const Text('Reset Password'),
+              child: const Text('Send Email'),
             ),
           ],
         ),
