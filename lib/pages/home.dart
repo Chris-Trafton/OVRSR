@@ -187,7 +187,7 @@ class _HomePageState extends State<HomePage> {
 class PlayerWidget extends StatelessWidget {
   final String? videoId; // Receive videoId as a parameter
 
-  const PlayerWidget({Key? key, this.videoId}) : super(key: key);
+  const PlayerWidget({Key? key, required this.videoId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -195,7 +195,7 @@ class PlayerWidget extends StatelessWidget {
       return YoutubePlayer(
         key: UniqueKey(), // Add a UniqueKey here
         controller: YoutubePlayerController.fromVideoId(
-          videoId: 'B4-L2nfGcuE',
+          videoId: '',
           params: const YoutubePlayerParams(
             showControls: true,
             showFullscreenButton: true,
