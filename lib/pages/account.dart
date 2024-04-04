@@ -147,7 +147,8 @@ class _AccountPageState extends ConsumerState<AccountPage> {
                               _isEditEmail = !_isEditEmail,
                               setState(() {}),
                               await _UserProfile.writeUserProfileToDb(),
-                              await user?.updateEmail(_UserProfile.email),
+                              await user
+                                  ?.verifyBeforeUpdateEmail(_UserProfile.email),
                             },
                         child: _isEditEmail
                             ? const Icon(Icons.save)
