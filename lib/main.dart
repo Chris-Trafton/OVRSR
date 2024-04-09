@@ -1,3 +1,6 @@
+//https://docs.flutter.dev/deployment/web
+//firebase deploy
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/find_locale.dart';
