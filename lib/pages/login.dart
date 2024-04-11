@@ -77,7 +77,7 @@ class _LoginPage extends ConsumerState<LoginPage> {
         });
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => const HomePage(),
+            builder: (context) => HomePage(),
           ),
         );
       } else {
