@@ -75,11 +75,6 @@ class _LoginPage extends ConsumerState<LoginPage> {
         setState(() {
           _isLoading = false;
         });
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => HomePage(),
-          ),
-        );
       } else {
         authResult = await _auth.createUserWithEmailAndPassword(
           email: email,
@@ -343,6 +338,11 @@ class _LoginPage extends ConsumerState<LoginPage> {
                     if (_saveForm()) {
                       _submitAuthForm(_enteredEmail, _enteredPassword,
                           _enteredUserName, _isLogin, context);
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => HomePage(),
+                        ),
+                      );
                     }
                   },
                   child: _isLoading
