@@ -9,6 +9,7 @@ import 'package:ovrsr/pages/login.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:ovrsr/utils/apptheme.dart';
 
+// Run the app
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
