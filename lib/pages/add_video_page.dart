@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:ovrsr/utils/apptheme.dart';
 import 'package:ovrsr/widgets/formatters/video_ID.dart';
 
+import 'package:intl/intl.dart';
 import '../db_helpers/firebase/db_user_profile.dart';
 
 class AddVideoPage extends StatefulWidget {
@@ -15,8 +16,8 @@ class AddVideoPage extends StatefulWidget {
 class _AddVideoPageState extends State<AddVideoPage> {
   final _formKey = GlobalKey<FormState>();
   late String _title;
-  late String _url;
-
+  late String _videoID;
+  late DateTime _selectedDate = DateTime.now();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,20 +68,39 @@ class _AddVideoPageState extends State<AddVideoPage> {
                   TextFormField(
                     cursorColor: AppTheme.light,
                     decoration: const InputDecoration(
-                      labelText: 'YouTube Video URL',
+                      labelText: 'YouTube Stream URL',
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter a YouTube video URL';
+                        return 'Please enter a YouTube stream URL';
                       }
                       return null;
                     },
                     onSaved: (value) {
                       //_url = Text(extractVideoID(value!)) as String;
-                      _url = extractVideoID(value!);
+                      _videoID = extractVideoID(value!);
                     },
                   ),
                   const SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: () async {
+                      // Show date picker and wait for user input
+                      final DateTime? pickedDate = await showDatePicker(
+                        context: context,
+                        initialDate: _selectedDate,
+                        firstDate: DateTime(2000),
+                        lastDate: DateTime(2100),
+                      );
+                      // Update selected date if user picked a date
+                      if (pickedDate != null && pickedDate != _selectedDate) {
+                        setState(() {
+                          _selectedDate = pickedDate;
+                        });
+                      }
+                    },
+                    child: Text('Select Date'),
+                  ),
+                  SizedBox(height: 20),
                   Row(
                     children: [
                       ElevatedButton(
@@ -120,13 +140,15 @@ class _AddVideoPageState extends State<AddVideoPage> {
   }
 
   void _saveVideoItem() async {
-    bool success = await DBUserProfile.saveVideoItem(_title, _url);
+    String formattedDate = DateFormat('yyyy-MM-dd').format(_selectedDate);
+    bool success =
+        await DBUserProfile.saveVideoItem(_title, _videoID, formattedDate);
     if (success) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Video item saved successfully')),
       );
       // Optionally, you can navigate back to the previous screen
-      Navigator.pop(context, _url);
+      Navigator.pop(context, _videoID);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Failed to save video item')),

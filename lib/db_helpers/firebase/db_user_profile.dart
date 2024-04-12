@@ -81,7 +81,8 @@ class DBUserProfile {
     return success;
   }
 
-  static Future<bool> saveVideoItem(String title, String url) async {
+  static Future<bool> saveVideoItem(
+      String title, String url, String date) async {
     bool success = false;
 
     var db = FirebaseFirestore.instance;
@@ -101,6 +102,7 @@ class DBUserProfile {
             .add({
           'title': title,
           'url': url,
+          'date': date, // Save the date along with title and url
         });
         success = true;
       } catch (e) {
