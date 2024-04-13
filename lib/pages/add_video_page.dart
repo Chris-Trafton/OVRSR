@@ -83,6 +83,10 @@ class _AddVideoPageState extends State<AddVideoPage> {
                   ),
                   const SizedBox(height: 20),
                   ElevatedButton(
+                    style: TextButton.styleFrom(
+                      backgroundColor: const Color.fromARGB(0, 128, 109, 0),
+                      foregroundColor: AppTheme.light,
+                    ),
                     onPressed: () async {
                       // Show date picker and wait for user input
                       final DateTime? pickedDate = await showDatePicker(
